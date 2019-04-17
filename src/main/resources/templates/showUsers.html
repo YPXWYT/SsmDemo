@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>展示用户数据</title>
+    <script type="text/javascript" th:src="@{/jquery-3.3.1/jquery-3.3.1.js}"></script>
+
+</head>
+<body>
+<!--<table border="1" style="width: 300px;">-->
+    <!--<tr>-->
+        <!--<th>ID</th>-->
+        <!--<th>Name</th>-->
+        <!--<th>Age</th>-->
+        <!--<th>操作</th>-->
+    <!--</tr>-->
+    <!--<tr th:each="user:${list}">-->
+        <!--<td th:text="${user.id}"></td>-->
+        <!--<td th:text="${user.name}"></td>-->
+        <!--<td th:text="${user.age}"></td>-->
+        <!--<td>-->
+            <!--<a th:href="@{/users/findUserById(id=${user.id})}">修改</a>-->
+            <!--<a th:href="@{/users/delUser(id=${user.id})}">删除</a>-->
+        <!--</td>-->
+    <!--</tr>-->
+<!--</table>-->
+
+<div id="myDiv"><h2>使用 AJAX 修改该文本内容</h2></div>
+<button type="button" id="button">修改内容</button>
+
+</body>
+<script>
+    $(function() {
+        $("#button").click(function () {
+            //ajax ajax方法
+            $.ajax({
+                type: 'post',
+                url: "http://localhost:8080/users/apishow3",
+                contentType: "application/json",
+                dataType: "json",
+                async: true,
+                success:function(data){
+                    var i;
+                    var json = "<table border=\"1\" style=\"width: 300px;\">"+
+                             "<tr>" +
+                             "<th>ID</th><th>Age</th><th>Name</th>" +
+                             "</tr>";
+                    for (i in data) {
+                        json += "<tr>" +
+                            "<th>"+data[i].id+"</th>"+
+                            "<th>"+data[i].age+"</th>"+
+                            "<th>"+ data[i].name+"</th>"+
+                            "<th>"+"<a th:href=\"@{/user/findUserById(id=${data[i].id})}\">修改</a>"+"</th>"+
+                            "<th>"+"<a th:href=\"@{/user/delUser(id=${data[i].id)}\">删除</a>"+"</th>" +
+                            "</th>"+
+                            "</tr>";
+                         }
+                    json+="</table>";
+                    document.getElementById("button").innerHTML = json;
+                },
+                error: function(){
+
+                    alert("error")
+
+                }
+            });
+        });
+    });
+</script>
+
+</html>

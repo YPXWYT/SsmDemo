@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 加载mybatis的映射文件 -->
+<mapper namespace="com.tna.ssmdemo.mapper.UsersMapper">
+    <!--id要与UsersMapper接口里的方法名相同，parameterType由于pojo包已经配置了别名，所以pojo包下不用写路径-->
+    <insert id="insertUser" parameterType="users">
+        insert into users(name,age) values(#{name},#{age})
+    </insert>
+
+    <select id="selectUsersAll" resultType="users">
+        select id,name,age from users
+    </select>
+
+    <!--传递的参数是一个整型的话，parameterType可以省略，参数只有一个则可以任意命名变量（#{value}）-->
+    <select id="selectUsersById" resultType="users">
+        select id,name,age from users where id=#{value}
+    </select>
+
+    <update id="updateUser" parameterType="users">
+        update users set name=#{name},age=#{age} where id=#{id}
+    </update>
+
+    <delete id="deleteUserById">
+        delete from users where id = #{value}
+    </delete>
+
+    <select id="selectUsersByName" resultType="users">
+        select id,name,age from users where name=#{value}
+    </select>
+
+    <select id="deleteUsersAll" resultType="users">
+        delete from users
+    </select>
+
+</mapper>

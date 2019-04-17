@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+    <!--@{}会自动去找到static目录-->
+    <script type="text/javascript" th:src="@{/jquery-3.3.1/jquery-3.3.1.js}"></script>
+
+</head>
+<body>
+<!--<form th:action="@{/users/addUser}" method="post">-->
+    <!--用户姓名：<input type="text" name="name"><br>-->
+    <!--用户年龄：<input type="text" name="age"><br>-->
+    <!--<input type="submit" value="提交"><br>-->
+<!--</form>-->
+
+<table>
+    <tr>
+        <td>用户姓名：</td>
+        <td><label for="name"></label><input type="text" name="name" id="name"></td>
+    </tr>
+    <tr>
+        <td>用户年龄：</td>
+        <td><label for="age"></label><input type="text" name="age" id="age"></td>
+    </tr>
+    <tr>
+
+        <td rowspan="2"><button id="but">提交</button></td>
+    </tr>
+</table>
+
+<p><a href="/user/getToken">点击登陆授权</a></p>
+
+</body>
+<script type="text/javascript">
+    $(function() {
+        $("#but").click(function () {
+            var name = $('#name').val();
+            var age = $('#age').val();
+            var url = "http://localhost:8080/users/addUser";
+            var data = {
+                "name": name, "age": age
+            };
+
+            //ajax ajax方法
+            $.ajax({
+                type: 'post',
+                url: url,
+                contentType: "application/json",
+                dataType: "json",
+                data:JSON.stringify(data),
+                async: true,
+                success:function(data){
+                    if (data===1){
+                        alert("ok");
+                    }
+                }
+            });
+        });
+    });
+</script>
+</html>

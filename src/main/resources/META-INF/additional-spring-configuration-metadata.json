@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "swagger.butler.resources[0].url",
+      "type": "java.lang.String",
+      "description": "Description for swagger.butler.resources[0].url."
+  }
+] }

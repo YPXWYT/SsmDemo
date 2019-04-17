@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>这里是主页</h2>
+<h4>登录用户信息</h4>
+<table>
+    <tr>
+        <td>用户ID</td>
+        <td th:text=""></td>
+        <td>用户名</td>
+        <td><%=userInfo.getString("yb_username") %></td>
+        <td>用户昵称</td>
+        <td><%=userInfo.getString("yb_usernick") %></td>
+    </tr>
+    <tr>
+        <td>性别</td>
+        <td><%=userInfo.getString("yb_sex") %></td>
+        <td>网薪数</td>
+        <td><%=userInfo.getString("yb_money") %></td>
+        <td>经验值</td>
+        <td><%=userInfo.getString("yb_exp") %></td>
+    </tr>
+    <tr>
+        <td>用户头像</td>
+        <td><img src="<%=userInfo.getString("yb_userhead")%>"></td>
+        <td>注册时间</td>
+        <td><%=userInfo.getString("yb_regtime") %></td>
+        <td>学校名字和ID</td>
+        <td><%=userInfo.getString("yb_schoolid") %>:<%=userInfo.getString("yb_schoolname") %></td>
+    </tr>
+</table>
+</body>
+</html>
